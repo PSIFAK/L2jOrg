@@ -168,7 +168,7 @@ public class ScarletVanHalisha extends AbstractNpcAI
 	
 	private synchronized void getSkillAI(Npc npc)
 	{
-		if (npc.isInvulnerable() || npc.isCastingNow())
+		if (npc.isInvul() || npc.isCastingNow())
 		{
 			return;
 		}

@@ -18,9 +18,6 @@
  */
 package org.l2j.gameserver.util.cron4j;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,8 +31,6 @@ import java.util.ArrayList;
  * @since 2.0
  */
 class FileTaskCollector implements TaskCollector {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileTaskCollector.class);
     /**
      * File list.
      */
@@ -86,7 +81,8 @@ class FileTaskCollector implements TaskCollector {
             try {
                 aux = CronParser.parse(f);
             } catch (IOException e) {
-                LOGGER.error("Cannot parse cron file {}.", f.getAbsolutePath(), e);
+                Exception e1 = new Exception("Cannot parse cron file: " + f.getAbsolutePath(), e);
+                e1.printStackTrace();
             }
             if (aux != null) {
                 int auxSize = aux.size();

@@ -49,7 +49,6 @@ public abstract class AbstractShot implements IItemHandler {
 
         // Check if Soul shot can be used
         if (!canUse(player)) {
-            player.sendPacket(cantUseMessage());
             return false;
         }
 
@@ -69,7 +68,5 @@ public abstract class AbstractShot implements IItemHandler {
     protected abstract ShotType getShotType();
 
     protected abstract SystemMessageId getEnabledShotsMessage();
-
-    protected abstract SystemMessageId cantUseMessage();
 
 }

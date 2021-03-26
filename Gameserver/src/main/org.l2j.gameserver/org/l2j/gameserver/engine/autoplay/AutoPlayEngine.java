@@ -75,14 +75,15 @@ public final class AutoPlayEngine {
     private AutoPlayEngine() {
     }
 
-    public Shortcut setActiveAutoShortcut(Player player, int room, boolean activate) {
+    public boolean setActiveAutoShortcut(Player player, int room, boolean activate) {
         var shortcut = player.getShortcut(room);
 
         if(nonNull(shortcut) && handleShortcut(player, shortcut, activate)) {
             player.setActiveAutoShortcut(room, activate);
-            return shortcut;
+            return true;
         }
-        return null;
+
+        return false;
     }
 
     private boolean handleShortcut(Player player, Shortcut shortcut, boolean activate) {

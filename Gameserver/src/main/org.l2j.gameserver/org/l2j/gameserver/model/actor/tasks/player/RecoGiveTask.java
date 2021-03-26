@@ -41,12 +41,12 @@ public class RecoGiveTask implements Runnable {
             // 10 recommendations to give out after 2 hours of being logged in
             // 1 more recommendation to give out every hour after that.
             int recoToGive = 1;
-            if (!_player.isRecommendTwoHoursGiven()) {
+            if (!_player.isRecoTwoHoursGiven()) {
                 recoToGive = 10;
-                _player.setRecommendTwoHoursGiven(true);
+                _player.setRecoTwoHoursGiven(true);
             }
 
-            _player.setRecommendLeft(_player.getRecommendLeft() + recoToGive);
+            _player.setRecomLeft(_player.getRecomLeft() + recoToGive);
 
             final SystemMessage sm = SystemMessage.getSystemMessage(SystemMessageId.YOU_OBTAINED_S1_RECOMMENDATION_S);
             sm.addInt(recoToGive);

@@ -61,21 +61,21 @@ public final class RequestVoteNew extends ClientPacket {
             return;
         }
 
-        if (activeChar.getRecommendLeft() <= 0) {
+        if (activeChar.getRecomLeft() <= 0) {
             client.sendPacket(SystemMessageId.YOU_ARE_OUT_OF_RECOMMENDATIONS_TRY_AGAIN_LATER);
             return;
         }
 
-        if (target.getRecommend() >= 255) {
+        if (target.getRecomHave() >= 255) {
             client.sendPacket(SystemMessageId.YOUR_SELECTED_TARGET_CAN_NO_LONGER_RECEIVE_A_RECOMMENDATION);
             return;
         }
 
-        activeChar.giveRecommend(target);
+        activeChar.giveRecom(target);
 
         SystemMessage sm = SystemMessage.getSystemMessage(SystemMessageId.YOU_HAVE_RECOMMENDED_C1_YOU_HAVE_S2_RECOMMENDATIONS_LEFT);
         sm.addPcName(target);
-        sm.addInt(activeChar.getRecommendLeft());
+        sm.addInt(activeChar.getRecomLeft());
         client.sendPacket(sm);
 
         sm = SystemMessage.getSystemMessage(SystemMessageId.YOU_HAVE_BEEN_RECOMMENDED_BY_C1);

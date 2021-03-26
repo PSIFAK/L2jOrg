@@ -61,7 +61,8 @@ public class Network extends VoteSystem {
             br.close();
             isr.close();
         } catch (Exception e) {
-            LOGGER.warn("VoteSystem: Error while getting server vote count from {} .", getSiteName(), e);
+            e.printStackTrace();
+            LOGGER.warn("VoteSystem: Error while getting server vote count from " + getSiteName() + ".");
         }
 
         return -1;

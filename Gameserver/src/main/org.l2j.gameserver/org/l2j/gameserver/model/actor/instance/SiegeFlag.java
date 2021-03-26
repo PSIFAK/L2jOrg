@@ -66,12 +66,12 @@ public class SiegeFlag extends Npc {
 
     @Override
     public boolean canBeAttacked() {
-        return !isInvulnerable();
+        return !isInvul();
     }
 
     @Override
     public boolean isAutoAttackable(Creature attacker) {
-        return !isInvulnerable();
+        return !isInvul();
     }
 
     @Override

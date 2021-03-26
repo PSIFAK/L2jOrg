@@ -28,8 +28,6 @@ import org.l2j.gameserver.model.entity.Castle;
 import org.l2j.gameserver.network.serverpackets.ExServerPrimitive;
 import org.l2j.gameserver.util.BuilderUtil;
 import org.l2j.gameserver.world.World;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 
@@ -42,7 +40,6 @@ import static org.l2j.gameserver.util.GameUtils.isDoor;
  */
 public class AdminDoorControl implements IAdminCommandHandler
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger(AdminDoorControl.class);
 	private static DoorDataManager _doorTable = DoorDataManager.getInstance();
 	private static final String[] ADMIN_COMMANDS =
 	{
@@ -175,7 +172,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			LOGGER.error(e.getMessage(), e);
+			e.printStackTrace();
 		}
 		return true;
 	}

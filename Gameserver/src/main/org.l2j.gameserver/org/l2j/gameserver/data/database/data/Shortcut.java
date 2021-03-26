@@ -118,10 +118,6 @@ public class Shortcut {
         return level;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     /**
      * Gets the shortcut level.
      *

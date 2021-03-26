@@ -327,7 +327,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				if (isPlayer(target))
 				{
 					final Player player = (Player) target;
-					player.setRecommend(recVal);
+					player.setRecomHave(recVal);
 					player.broadcastUserInfo();
 					player.sendMessage("A GM changed your Recommend points to " + recVal);
 					activeChar.sendMessage(player.getName() + "'s Recommend changed to " + recVal);
@@ -574,7 +574,7 @@ public class AdminEditChar implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				LOGGER.error(e.getMessage(), e);
+				e.printStackTrace();
 			}
 		}
 		else if (command.startsWith("admin_find_dualbox"))

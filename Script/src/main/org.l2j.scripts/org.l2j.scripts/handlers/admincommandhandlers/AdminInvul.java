@@ -85,7 +85,7 @@ public class AdminInvul implements IAdminCommandHandler
 	private void handleInvul(Player activeChar)
 	{
 		String text;
-		if (activeChar.isInvulnerable())
+		if (activeChar.isInvul())
 		{
 			activeChar.setIsInvul(false);
 			text = activeChar.getName() + " is now mortal.";

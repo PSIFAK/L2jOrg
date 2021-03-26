@@ -598,6 +598,6 @@ public final class GameUtils {
             return false;
         }
 
-        return !player.isOnEvent();
+        return !player.isBlockedFromExit();
     }
 }

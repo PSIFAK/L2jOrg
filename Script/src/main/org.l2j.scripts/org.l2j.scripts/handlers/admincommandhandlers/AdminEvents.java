@@ -26,15 +26,11 @@ import org.l2j.gameserver.model.quest.Event;
 import org.l2j.gameserver.model.quest.Quest;
 import org.l2j.gameserver.network.serverpackets.html.NpcHtmlMessage;
 import org.l2j.gameserver.util.BuilderUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.StringTokenizer;
 
 public class AdminEvents implements IAdminCommandHandler
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger(AdminEvents.class);
-
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_event_menu",
@@ -100,7 +96,7 @@ public class AdminEvents implements IAdminCommandHandler
 			catch (Exception e)
 			{
 				BuilderUtil.sendSysMessage(activeChar, "Usage: //event_start <eventname>");
-				LOGGER.error(e.getMessage(), e);
+				e.printStackTrace();
 				return false;
 			}
 		}
@@ -127,7 +123,7 @@ public class AdminEvents implements IAdminCommandHandler
 			catch (Exception e)
 			{
 				BuilderUtil.sendSysMessage(activeChar, "Usage: //event_start <eventname>");
-				LOGGER.error(e.getMessage(), e);
+				e.printStackTrace();
 				return false;
 			}
 		}
@@ -147,7 +143,7 @@ public class AdminEvents implements IAdminCommandHandler
 			catch (Exception e)
 			{
 				BuilderUtil.sendSysMessage(activeChar, "Usage: //event_bypass <eventname> <bypass>");
-				LOGGER.error(e.getMessage(), e);
+				e.printStackTrace();
 				return false;
 			}
 		}

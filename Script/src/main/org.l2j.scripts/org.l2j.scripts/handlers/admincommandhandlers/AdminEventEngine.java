@@ -361,7 +361,7 @@ public class AdminEventEngine implements IAdminCommandHandler {
 		}
 		catch (Exception e)
 		{
-			LOGGER.error(e.getMessage(), e);
+			e.printStackTrace();
 			AdminData.getInstance().broadcastMessageToGMs("EventEngine: Error! Possible blank boxes while executing a command which requires a value in the box?");
 		}
 		return true;

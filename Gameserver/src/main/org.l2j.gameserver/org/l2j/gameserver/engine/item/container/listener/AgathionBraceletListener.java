@@ -34,14 +34,14 @@ public final class AgathionBraceletListener implements PlayerInventoryListener {
     }
 
     @Override
-    public void notifyUnequipped(InventorySlot slot, Item item, Inventory inventory) {
+    public void notifyUnequiped(InventorySlot slot, Item item, Inventory inventory) {
         if (item.getBodyPart() == BodyPart.LEFT_BRACELET) {
             InventorySlot.agathions().forEach(inventory::unEquipItemInSlot);
         }
     }
 
     @Override
-    public void notifyEquipped(InventorySlot slot, Item item, Inventory inventory) {
+    public void notifyEquiped(InventorySlot slot, Item item, Inventory inventory) {
     }
 
 

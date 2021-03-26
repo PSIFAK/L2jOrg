@@ -24,7 +24,6 @@ import org.l2j.gameserver.model.stats.Stat;
 import org.l2j.gameserver.network.SystemMessageId;
 
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 /**
  * @author JoeAlisson
@@ -33,7 +32,11 @@ public class SoulShots extends AbstractShot {
 
     @Override
     protected boolean canUse(Player player) {
-        return nonNull(player.getActiveWeaponInstance()) && player.isAutoShotEnabled(ShotType.SOULSHOTS);
+        if (isNull(player.getActiveWeaponInstance()) || !player.isAutoShotEnabled(ShotType.SOULSHOTS)) {
+            player.sendPacket(SystemMessageId.CANNOT_USE_SOULSHOTS);
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -54,10 +57,5 @@ public class SoulShots extends AbstractShot {
     @Override
     protected SystemMessageId getEnabledShotsMessage() {
         return SystemMessageId.YOUR_SOULSHOTS_ARE_ENABLED;
-    }
-
-    @Override
-    protected SystemMessageId cantUseMessage() {
-        return SystemMessageId.CANNOT_USE_SOULSHOTS;
     }
 }

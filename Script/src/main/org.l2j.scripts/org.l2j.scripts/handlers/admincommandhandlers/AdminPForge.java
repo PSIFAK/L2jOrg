@@ -28,8 +28,6 @@ import org.l2j.gameserver.model.actor.instance.Player;
 import org.l2j.gameserver.network.serverpackets.AdminForgePacket;
 import org.l2j.gameserver.network.serverpackets.html.NpcHtmlMessage;
 import org.l2j.gameserver.util.BuilderUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
@@ -46,9 +44,6 @@ import static org.l2j.gameserver.util.GameUtils.isPlayable;
  */
 public final class AdminPForge implements IAdminCommandHandler
 {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(AdminPForge.class);
-
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_forge",
@@ -324,7 +319,7 @@ public final class AdminPForge implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				LOGGER.error(e.getMessage(), e);
+				e.printStackTrace();
 				showValuesUsage(activeChar);
 				return false;
 			}
@@ -615,7 +610,7 @@ public final class AdminPForge implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				LOGGER.error(e.getMessage(), e);
+				e.printStackTrace();
 				showSendUsage(activeChar, null, null);
 				return false;
 			}

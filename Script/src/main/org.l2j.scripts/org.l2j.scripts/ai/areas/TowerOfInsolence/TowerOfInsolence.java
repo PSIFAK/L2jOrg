@@ -195,7 +195,7 @@ public class TowerOfInsolence extends AbstractNpcAI {
                 spawn.setLocation(location);
                 spawn.doSpawn();
             } catch (ClassNotFoundException | NoSuchMethodException e) {
-                LOGGER.error(e.getMessage(), e);
+                e.printStackTrace();
             }
         }
     }

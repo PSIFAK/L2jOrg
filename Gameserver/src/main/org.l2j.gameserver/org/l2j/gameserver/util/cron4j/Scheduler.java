@@ -18,9 +18,6 @@
  */
 package org.l2j.gameserver.util.cron4j;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.TimeZone;
@@ -33,9 +30,6 @@ import java.util.TimeZone;
  * @author Carlo Pelliccia
  */
 public class Scheduler {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Scheduler.class);
-
     /**
      * A GUID for this scheduler.
      */
@@ -622,11 +616,13 @@ public class Scheduler {
         synchronized (listeners) {
             int size = listeners.size();
             if (size > 0) {
-                for (SchedulerListener l : listeners) {
+                for (int i = 0; i < size; i++) {
+                    SchedulerListener l = listeners.get(i);
                     l.taskFailed(executor, exception);
                 }
             } else {
-                LOGGER.error(exception.getMessage(), exception);
+                // Logs on console if no one has been notified about it.
+                exception.printStackTrace();
             }
         }
     }

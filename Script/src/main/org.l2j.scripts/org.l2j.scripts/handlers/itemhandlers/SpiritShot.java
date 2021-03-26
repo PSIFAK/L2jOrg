@@ -24,7 +24,6 @@ import org.l2j.gameserver.model.stats.Stat;
 import org.l2j.gameserver.network.SystemMessageId;
 
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 /**
  * @author JoeAlisson
@@ -33,7 +32,11 @@ public class SpiritShot extends AbstractShot {
 
     @Override
     protected boolean canUse(Player player) {
-        return nonNull(player.getActiveWeaponInstance()) && player.isAutoShotEnabled(ShotType.SPIRITSHOTS);
+        if (isNull(player.getActiveWeaponInstance()) || !player.isAutoShotEnabled(ShotType.SPIRITSHOTS)) {
+            player.sendPacket(SystemMessageId.YOU_MAY_NOT_USE_SPIRITSHOTS);
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -54,10 +57,5 @@ public class SpiritShot extends AbstractShot {
     @Override
     protected SystemMessageId getEnabledShotsMessage() {
         return SystemMessageId.YOUR_SPIRITSHOT_HAS_BEEN_ENABLED;
-    }
-
-    @Override
-    protected SystemMessageId cantUseMessage() {
-        return SystemMessageId.YOU_MAY_NOT_USE_SPIRITSHOTS;
     }
 }

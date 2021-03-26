@@ -1,4 +1,5 @@
 /*
+ * Copyright © 2019 L2J Mobius
  * Copyright © 2019-2021 L2JOrg
  *
  * This file is part of the L2JOrg project.
@@ -16,25 +17,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.l2j.gameserver.data.database.dao;
+package org.l2j.gameserver.model.actor.tasks.player;
 
-import org.l2j.commons.database.DAO;
-import org.l2j.commons.database.annotation.Query;
-import org.l2j.gameserver.data.database.data.Shortcut;
-
-import java.util.List;
+import org.l2j.gameserver.model.actor.instance.Player;
 
 /**
- * @author JoeAlisson
+ * Task dedicated watch for player teleportation.
+ *
+ * @author UnAfraid
  */
-public interface ShortcutDAO extends DAO<Shortcut> {
+public class TeleportWatchdogTask implements Runnable {
+    private final Player _player;
 
-    @Query("DELETE FROM character_shortcuts WHERE player_id=:playerId: AND client_id=:clientId:")
-    void delete(int playerId, int clientId);
+    public TeleportWatchdogTask(Player player) {
+        _player = player;
+    }
 
-    @Query("SELECT * FROM character_shortcuts WHERE player_id=:playerId:")
-    List<Shortcut> findByPlayer(int playerId);
-
-    @Query("DELETE FROM character_shortcuts WHERE player_id=:playerId:")
-    void deleteFromPlayer(int playerId);
+    @Override
+    public void run() {
+        if ((_player == null) || !_player.isTeleporting()) {
+            return;
+        }
+        _player.onTeleported();
+    }
 }

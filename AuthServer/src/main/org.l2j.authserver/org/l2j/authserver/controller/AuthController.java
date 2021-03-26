@@ -116,7 +116,7 @@ public class AuthController {
         client.setKeyPar(getScrambledRSAKeyPair());
         var blowfishKey  = getBlowfishKey();
         client.setBlowfishKey(blowfishKey);
-        client.setSessionId(Rnd.nextSecureInt());
+        client.setSessionId(Rnd.nextInt());
         var cripter = new AuthCrypt();
         cripter.setKey(blowfishKey);
         client.setCrypt(cripter);
@@ -127,7 +127,7 @@ public class AuthController {
     }
 
     private void assignSessionKeyToClient(AuthClient client) {
-        var key = new SessionKey(Rnd.nextSecureInt(), Rnd.nextSecureInt(), Rnd.nextSecureInt(), Rnd.nextSecureInt());
+        var key = new SessionKey(Rnd.nextInt(), Rnd.nextInt(), Rnd.nextInt(), Rnd.nextInt());
         client.setSessionKey(key);
         authedClients.put(client.getAccount().getLogin(), client);
     }
@@ -284,7 +284,7 @@ public class AuthController {
 
         if(failedAttempt.getCount() >= authTriesBeforeBan())  {
             LOGGER.info("Banning {} for {} seconds due to {} invalid user/pass attempts", client.getHostAddress(), loginBlockAfterBan(), failedAttempt.getCount());
-            banManager.addBannedAdress(client.getHostAddress(), currentTimeMillis() + loginBlockAfterBan() * 1000L);
+            banManager.addBannedAdress(client.getHostAddress(), currentTimeMillis() + loginBlockAfterBan() * 1000);
         }
     }
 
@@ -312,7 +312,7 @@ public class AuthController {
         private static final AuthController INSTANCE = new AuthController();
     }
 
-    private static class FailedLoginAttempt {
+    private class FailedLoginAttempt {
 
         private int _count = 1;
         private long _lastAttempTime;
@@ -333,8 +333,11 @@ public class AuthController {
 
                 }
                 _lastPassword = password;
+                _lastAttempTime = currentTimeMillis();
+            } else {
+                // trying the same password is not brute force
+                _lastAttempTime = currentTimeMillis();
             }
-            _lastAttempTime = currentTimeMillis();
         }
 
         int getCount() {

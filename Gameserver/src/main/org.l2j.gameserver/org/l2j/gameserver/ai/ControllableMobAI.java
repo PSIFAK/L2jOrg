@@ -352,7 +352,7 @@ public final class ControllableMobAI extends AttackableAI {
         }
 
         // Check if the target isn't invulnerable
-        if (target.isInvulnerable()) {
+        if (target.isInvul()) {
             return false;
         }
 

@@ -22,8 +22,9 @@ import io.github.joealisson.mmocore.WritableBuffer;
 import org.l2j.gameserver.network.authcomm.AuthServerClient;
 import org.l2j.gameserver.network.authcomm.SendablePacket;
 
-public class PlayerLogout extends SendablePacket {
-	private final String account;
+public class PlayerLogout extends SendablePacket
+{
+	private String account;
 
 	public PlayerLogout(String account)
 	{

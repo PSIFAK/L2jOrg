@@ -19,31 +19,27 @@
 package org.l2j.gameserver.network.serverpackets;
 
 import io.github.joealisson.mmocore.WritableBuffer;
-import org.l2j.gameserver.enums.ShotType;
 import org.l2j.gameserver.network.GameClient;
 import org.l2j.gameserver.network.ServerExPacketId;
 
-/**
- * @author JoeAlisson
- */
 public class ExAutoSoulShot extends ServerPacket {
-    private final int itemId;
-    private final boolean enable;
-    private final ShotType type;
+    private final int _itemId;
+    private final boolean _enable;
+    private final int _type;
 
-    public ExAutoSoulShot(int itemId, boolean enable, ShotType type) {
-        this.itemId = itemId;
-        this.enable = enable;
-        this.type = type;
+    public ExAutoSoulShot(int itemId, boolean enable, int type) {
+        _itemId = itemId;
+        _enable = enable;
+        _type = type;
     }
 
     @Override
     public void writeImpl(GameClient client, WritableBuffer buffer) {
         writeId(ServerExPacketId.EX_AUTO_SOULSHOT, buffer );
 
-        buffer.writeInt(itemId);
-        buffer.writeInt(enable);
-        buffer.writeInt(type.getClientId());
+        buffer.writeInt(_itemId);
+        buffer.writeInt(_enable);
+        buffer.writeInt(_type);
     }
 
 }
